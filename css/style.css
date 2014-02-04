@@ -1,0 +1,222 @@
+body {
+  background-color: black;
+  background-image: url("../img/bondjs.svg");
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.arrow-white {
+  position: absolute;
+  top: -7px;
+  background-image: url("../img/arrow_white.svg");
+  background-repeat: repeat-x;
+  background-position: left top;
+  height: 7px;
+  width: 100%;
+}
+
+.arrow-black {
+  position: absolute;
+  top: -7px;
+  background-image: url("../img/arrow_up.svg");
+  background-repeat: repeat-x;
+  background-position: left top;
+  height: 7px;
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  background-color: white;
+  margin-top: 1000px;
+  padding-top: 20px;
+  -webkit-transition: margin-top 2s ease;
+  -moz-transition: margin-top 2s ease;
+  transition: margin-top 2s ease;
+}
+
+.demo {
+  position: relative;
+  margin-top: 50px;
+  min-height: 2000px;
+  background-color: black;
+}
+
+.content.init {
+  margin-top: 300px;
+}
+
+.light {
+  color: #989898;
+}
+
+.olive {
+  position: absolute;
+  width: 50px;
+  height: 62px;
+  background-color: #b1b10b;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b1b10b), color-stop(100%, #71710e));
+  background-image: -webkit-linear-gradient(#b1b10b, #71710e);
+  background-image: linear-gradient(#b1b10b, #71710e);
+  background-color: olive;
+  border-radius: 50px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.olive.spotted {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+.olive:after {
+  position: absolute;
+  top: 11px;
+  left: 16px;
+  /*    background: -webkit-linear-gradient(#ce3d14,#621e0b);*/
+  background-color: #C43C16;
+  -webkit-transform: rotate(16deg);
+  -moz-transform: rotate(16deg);
+  -ms-transform: rotate(16deg);
+  -o-transform: rotate(16deg);
+  transform: rotate(16deg);
+  border-radius: 20px;
+  width: 20px;
+  height: 11px;
+  content: " ";
+}
+.olive:before {
+  position: absolute;
+  top: 5px;
+  left: 13px;
+  background-color: #646408;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #646408), color-stop(100%, #333306));
+  background-image: -webkit-linear-gradient(#646408, #333306);
+  background-image: linear-gradient(#646408, #333306);
+  background-color: #212104;
+  -webkit-transform: rotate(16deg);
+  -moz-transform: rotate(16deg);
+  -ms-transform: rotate(16deg);
+  -o-transform: rotate(16deg);
+  transform: rotate(16deg);
+  border-radius: 20px;
+  width: 26px;
+  height: 24px;
+  content: " ";
+}
+
+.olive-example {
+  position: relative;
+  margin: 30px 0px 30px 0px;
+  margin-left: 8%;
+  display: inline-block;
+  -webkit-transition: all 0s 0s ease;
+  -moz-transition: all 0s 0s ease;
+  transition: all 0s 0s ease;
+}
+.olive-example:first-child {
+  margin-left: 0%;
+}
+
+.olive-a.spotted {
+  -webkit-transition: all 1s 0s ease;
+  -moz-transition: all 1s 0s ease;
+  transition: all 1s 0s ease;
+}
+
+.olive-b.spotted {
+  -webkit-transition: all 1s 0.2s ease;
+  -moz-transition: all 1s 0.2s ease;
+  transition: all 1s 0.2s ease;
+}
+
+.olive-c.spotted {
+  -webkit-transition: all 1s 0.4s ease;
+  -moz-transition: all 1s 0.4s ease;
+  transition: all 1s 0.4s ease;
+}
+
+.olive-d.spotted {
+  -webkit-transition: all 1s 0.6s ease;
+  -moz-transition: all 1s 0.6s ease;
+  transition: all 1s 0.6s ease;
+}
+
+.olive-e.spotted {
+  -webkit-transition: all 1s 0.8s ease;
+  -moz-transition: all 1s 0.8s ease;
+  transition: all 1s 0.8s ease;
+}
+
+.olive-f.spotted {
+  -webkit-transition: all 1s 1s ease;
+  -moz-transition: all 1s 1s ease;
+  transition: all 1s 1s ease;
+}
+
+.olive-1 {
+  top: 200px;
+  left: 25%;
+}
+
+.olive-2 {
+  top: 400px;
+  right: 25%;
+}
+
+.olive-3 {
+  top: 600px;
+  left: 25%;
+}
+
+.olive-4 {
+  top: 800px;
+  right: 25%;
+}
+
+.olive-5 {
+  top: 1000px;
+  left: 25%;
+}
+
+.olive-6 {
+  top: 1200px;
+  right: 25%;
+}
+
+.olive-7 {
+  top: 1400px;
+  left: 25%;
+}
+
+.olive-8 {
+  top: 1600px;
+  right: 25%;
+}
+
+.olive-9 {
+  top: 1800px;
+  left: 25%;
+}
+
+.olive-10 {
+  top: 2000px;
+  right: 25%;
+}
+
+.row {
+  opacity: 0.1;
+}
+.row.spotted {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  transition: all 1s ease;
+  opacity: 1;
+}

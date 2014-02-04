@@ -6,7 +6,7 @@
     <title>Bond JS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="_/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -18,11 +18,46 @@
                 <h1 class="big">Bond JS</h1>
                 <p class="lead">A Scroll Spy that drinks Vodka Martini!</p>
                 <p>If you dont want the hazzle of keeping control over when to start your animations when it reaches a certain point on the screen, and when to stop them again, Bond JS is maybe something for you.</p>
-                <p>Bond JS keeps track of your HTMLElements an starts animations when they appear in the window. Bond JS can call functions when you elements appear or disaapear or just toggle a css class on them. </p>
+                <p>Bond JS keeps track of your HTMLElements an starts animations when they appear in the window you define. Bond JS can call functions when you elements appear or disaapear or just toggle a css class on them. </p>
                 <p>Keep scrolling to read the simple documentation, examples and the demo page.</p>
                 <p class="light"><em>Bond is tested with modern browser, such as Chrome, FireFox, Safari & >IE8</em></p>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Example</h3>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="olive olive-example  olive-a"></div>    
+                <div class="olive olive-example olive-b"></div>    
+                <div class="olive olive-example olive-c"></div>    
+                <div class="olive olive-example olive-d hidden-sm hidden-xs"></div>    
+                <div class="olive olive-example olive-e hidden-md hidden-sm"></div>
+                <br>
+                In this example, the olives will rotate when they become visible in the window. Try scroll up and down, so they become hidden and visible to see them rotate.    
+            </div>
+            <div class="col-sm-6">
+                <pre>
+var bond = new Bond();
+bond.spyon([
+    {
+        victim: $('.olive'),
+        missionData:{
+            visibility:{
+                victimBody:true
+            }
+        }
+    }
+]).start();  
+                </pre>    
+            </div>
+        </div>
+        
+        
         <div class="row">
             <div class="col-md-12">
                 <h3>Documentation</h3>
