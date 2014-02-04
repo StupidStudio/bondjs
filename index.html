@@ -1,1 +1,352 @@
-BondJS
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bond JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="_/css/style.css">
+</head>
+
+<body>
+<div class="content">
+    <div class="arrow-white"></div>    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="big">Bond JS</h1>
+                <p class="lead">A Scroll Spy that drinks Vodka Martini!</p>
+                <p>If you dont want the hazzle of keeping control over when to start your animations when it reaches a certain point on the screen, and when to stop them again, Bond JS is maybe something for you.</p>
+                <p>Bond JS keeps track of your HTMLElements an starts animations when they appear in the window. Bond JS can call functions when you elements appear or disaapear or just toggle a css class on them. </p>
+                <p>Keep scrolling to read the simple documentation, examples and the demo page.</p>
+                <p class="light"><em>Bond is tested with modern browser, such as Chrome, FireFox, Safari & >IE8</em></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Documentation</h3>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-6">
+                    <h4>Initialize Bond JS</h4>
+            </div>
+            <div class="col-sm-6">
+                <pre>var bond = Bond();</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6"><h4>Global defaults</h4><p>The default values is <code>top:0</code>, <code>bottom:0</code>, <code>victimBody:false</code>, <code>cssClass:'spotted'</code>, <code>once:false</code>. You can choose to only override some of the values.</p></div>
+            <div class="col-sm-6"><pre>{
+    visbility:{
+        top:0,
+        bottom:0,
+        victimBody:false
+    },
+    animation: {
+        cssClass: 'spotted',
+        once: false
+    }
+}</pre></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                    <h4>Override defaults</h4>
+                    <p>You override the default values by passing <code>new Bond</code> an object with the new values.</p>
+            </div>
+            <div class="col-sm-6">
+                <pre>var bond = new Bond({
+    visibility: {
+        top: 0.2,
+        bottom: 0.2,
+        victimBody: true
+    },
+    animation:{
+        cssClass: 'animate',
+        once: true,
+        in: function (e){
+            console.log("in");
+        },
+        out: function (e) {
+            console.log("out");
+        }
+    }
+});</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Give bond victims to spy on</h4>
+                <p>To get bond to spot victims, pass him an <code>array</code> of objects, and add one property called <code>victim</code>. Give that property and <code>HTMLElement</code> or an <strong>jQuery</strong> object.</p>
+                <p>E.g.<code>$('.le-chiffre')</code> (one element) <code>$('.pretty-ladies')</code> (multiple elements). </p>
+                <p>
+                    Bond will spot the <code>HTMLElement</code> when it enters the window and give it the default class <code>spotted</code> unless the defaults has been override.
+                </p>
+                
+            </div>
+            <div class="col-sm-6">
+                <pre>var bond = new Bond();
+bond.spyon([
+    {
+        victim: HTMLElement
+    },
+    {
+        victim: document.getElementsByClassName('mr-big');
+    },
+    {
+        victim: $('.le-chiffre')
+    },
+    {
+        victim: $('.pretty-ladies')
+    },
+    [...]
+]);</pre>
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Add properties to the victims</h4>
+                <p>The <code>missionData</code> overrides the global options for the current <code>victim</code>. </p>
+                <p>Therefore it will only work for the <code>victim</code> inside the wrapping object.</p>
+            </div>
+            <div class="col-sm-6">
+                <pre>var bond = new Bond();
+bond.spyon([
+    {
+        victim: HTMLElement,
+        missionData:{
+            visibility:{
+                top: 0.5,
+                bottom: 0.5,
+                victimBody: true
+            },
+            animation:{
+                cssClass: "animation",
+                in: function (e) {
+                    console.log("in");
+                },
+                out: function (e) {
+                    console.log("out");
+                }
+            }
+        }
+    },
+    [...]
+]);</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Start Bond JS</h4>
+                <p>You can start bond, after you giving bond some victims to spy on by adding them to <code>spyon</code>.</p>
+                <p>You can also chain <code>start</code> to the <code>spyon</code> method.</p>
+            </div>
+            <div class="col-sm-6">
+                <pre>bond.start();
+
+// or
+            
+bond.spyon([
+    {
+        victim: HTMLElement
+    }
+]).start();</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6"><h4>Make bond report back</h4>
+            <p>You can make bond tell you whats he's doing, so you can debug your code, if something is wrong.</p></div>
+            <div class="col-sm-6">
+                <pre>var bond = new Bond();
+bond.report = true;
+bond.spyon([
+    ...
+]).start();
+</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Forced spying</h4>
+                <p>If you have som animation, that change the victims location, use <code>forcespy</code> to make bond search for the victims even though the user doesn't scroll</p>
+                <p>You can choose to manually call <code>forcespy</code> or make it a timed method by adding a timespan <code>forcespy(2000)</code> this will force bond to spy for <code>2s</code>, and the window.scroll will be disabled in that period.</p>
+            </div>
+            <div class="col-sm-6">
+                <pre>bond.forcespy();
+// or
+bond.forcespy(2000);</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6"><h4>Snippet</h4><p>This is how you could use <strong>BondJS</strong></p></div>
+            <div class="col-sm-6">
+                <pre>var bond = new Bond();
+bond.spyon([
+    {
+        victim: $('.mr-big'),
+        missionData:{
+            visibility:{
+                top:0,
+                bottom: 0,
+                victimBody:true
+            },
+            animation:{
+                cssClass: 'custom',
+                in:function(e){
+                    console.log(e, "in");
+                },
+                out:function(e){
+                    console.log(e, "out");
+                }
+            }
+        }
+    }
+])
+bond.start();
+                    
+                </pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Examples</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Spot the victim when it's center in window</h4>
+                <p>When we give bond <code>top:0.5</code> it means that he should spot the victim when its <code>50%</code> from the top, and the same for the bottom.</p>
+                <p>When we say to bond that the <code>victimBody:true</code> it means that he should spot the <code>victim</code> from the center of the <code>victim</code> instead of the the top.</p>
+            </div>
+            <div class="col-sm-6">
+                <pre>bond.spyon([
+    {
+        victim: HTMLElement,
+        missionData:{
+            visibility:{
+                top: 0.5,
+                bottom: 0.5,
+                victimBody: true
+            }
+        }
+        
+    },
+    [...]
+])</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Spot the victim when its 100px in</h4>
+                <p>Here we tell bond that he should be using px <code>100px</code> values instead of pct. </p> <p>Now bond will spot the <code>victim</code> when the head is <code>100px</code> in.</p>
+            </div>
+            <div class="col-sm-6">
+                <pre>bond.spyon([
+    {
+        victim: HTMLElement,
+        missionData:{
+            visibility:{
+                top: 0,
+                bottom: 100
+            }
+        }
+    },
+    [...]
+])</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6"><h4>Change the cssClass</h4><p>We can tell bond that when he spots the <code>victim</code> he should put another css class on it e.g. <code>css-class</code></p></div>
+            <div class="col-sm-6">
+                <pre>bond.spyon([
+    {
+        victim: HTMLElement,
+        missionData:{
+            animation:{
+                cssClass: 'css-class'
+            }
+        }
+    },
+    [...]
+])</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6"><h4>Callbacks</h4>
+            <p>You can make bond call a <code>function</code> when the <code>victim</code> is spotted.</p><p>By setting the <code>once:true</code> bond will only spot the <code>victim</code> once. Therefore it will only call the <code>in</code> callback once, and <strong>won't</strong> call the <code>out</code>.</p> <p>If you want bond to call the <code>in</code> and <code>out</code> callback, as the <code>victim</code> goes in and out of the window, just set <code>once:false</code> or dont set it all.</p><p>If you want some extra data on the <code>victim</code> set it on the <code>extra</code> variable. Bond adds some value to the <code>victim</code> object, but the <code>extra</code> property is safe.</p></div>
+            <div class="col-sm-6">
+                <pre>bond.spyon([
+    {
+        victim: HTMLElement,
+        extra:{
+            data: 'extra data'
+        },
+        missionData:{
+            animation:{
+                once: true,
+                in: function(e){
+                    console.log(e.extra.data, "in");
+                },
+                out:function(e){
+                    // wont be called
+                    console.log(e.extra.data, "out");
+                }
+            }
+        }
+    },
+    [...]
+]</pre>
+            </div>
+        </div>
+    </div>
+    <div class="demo">
+        <div class="arrow-black"></div>
+        <div class="olive olive-1"></div>
+        <div class="olive olive-2"></div>
+        <div class="olive olive-3"></div>
+        <div class="olive olive-4"></div>
+        <div class="olive olive-5"></div>
+        <div class="olive olive-6"></div>
+        <div class="olive olive-7"></div>
+        <div class="olive olive-8"></div>
+        <div class="olive olive-9"></div>
+        <div class="olive olive-10"></div>
+    </div>
+</div>    
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bond.0.0.5.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+            var bond = new Bond();
+            bond.report = true;
+            bond.spyon([
+                {
+                    victim: $('.olive'),
+                    missionData:{
+                        visibility:{
+                            victimBody:true
+                        }
+                    }
+                },
+                {
+                    victim: $('.row'),
+                    missionData:{
+                        visibility:{
+                            top:200,
+                            bottom:200
+                        }    
+                    }
+                }
+            ]).start();
+            
+            // Start animation
+            $('.content').addClass('init');
+            bond.forcespy(2000);
+        })
+    </script>
+</body>
+
+</html>
