@@ -360,8 +360,6 @@
         },
         _victimInScope: function (victim) {
             
-            console.log("victimInScope", victim);
-            
             /*!
              * Set a class on the victims html
              */

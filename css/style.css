@@ -25,6 +25,16 @@ body {
   width: 100%;
 }
 
+.arrow-black-reverse {
+  position: absolute;
+  bottom: -7px;
+  background-image: url("../img/arrow.svg");
+  background-repeat: repeat-x;
+  background-position: left top;
+  height: 7px;
+  width: 100%;
+}
+
 .content {
   position: relative;
   background-color: white;
@@ -38,8 +48,31 @@ body {
 .demo {
   position: relative;
   margin-top: 50px;
-  min-height: 2000px;
+  margin-bottom: 50px;
+  min-height: 1530px;
   background-color: black;
+}
+
+.bg-black {
+  margin-top: 40px;
+  position: relative;
+  background-color: black;
+}
+.bg-black h1, .bg-black h2, .bg-black h3, .bg-black h4, .bg-black h5, .bg-black p {
+  color: white;
+}
+
+.footer {
+  text-align: center;
+  opacity: 1 !important;
+  padding: 40px 0 70px 0;
+}
+.footer a {
+  color: white;
+  text-decoration: underline;
+}
+.footer a:hover {
+  text-decoration: none;
 }
 
 .content.init {
@@ -125,6 +158,35 @@ body {
 }
 .olive-example:first-child {
   margin-left: 0%;
+}
+.olive-example.spotted {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  transition: all 1s ease;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.olive-big {
+  width: 75px;
+  height: 93px;
+}
+.olive-big:after {
+  top: 16.5px;
+  left: 24px;
+  border-radius: 30px;
+  width: 30px;
+  height: 16.5px;
+}
+.olive-big:before {
+  top: 7.5px;
+  left: 19.5px;
+  border-radius: 30px;
+  width: 39px;
+  height: 36px;
 }
 
 .olive-a.spotted {
@@ -213,10 +275,10 @@ body {
   right: 25%;
 }
 
-.row {
+.row, .footer {
   opacity: 0.1;
 }
-.row.spotted {
+.row.spotted, .spotted.footer {
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   transition: all 1s ease;

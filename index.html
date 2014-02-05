@@ -346,41 +346,141 @@ bond.start();
     </div>
     <div class="demo">
         <div class="arrow-black"></div>
-        <div class="olive olive-1" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></div>
-        <div class="olive olive-2"></div>
-        <div class="olive olive-3"></div>
-        <div class="olive olive-4"></div>
-        <div class="olive olive-5"></div>
-        <div class="olive olive-6"></div>
+        <div class="olive olive-1 olive-big" title=".olive-1" data-container="body" data-toggle="popover" data-placement="right" data-content="Im visible, when my body is in the window"></div>
+        <div class="olive olive-2 olive-big" title=".olive-2" data-container="body" data-toggle="popover" data-placement="left" data-content="Im visible, when my body is center in the window"></div>
+        <div class="olive olive-3 olive-big" title=".olive-3" data-container="body" data-toggle="popover" data-placement="right" data-content="Im visible, when my body is 20% from the top, and 80% from the bottom"></div>
+        <div class="olive olive-4 olive-big" title=".olive-4" data-container="body" data-toggle="popover" data-placement="left" data-content="Im visible, when my head is just in the window"></div>
+        <div class="olive olive-5 olive-big" title=".olive-5" data-container="body" data-toggle="popover" data-placement="right" data-content="Im visible, when im 300px from the top or bottom"></div>
+        <div class="olive olive-6 olive-big" title=".olive-6" data-container="body" data-toggle="popover" data-placement="left" data-content="Im visible, when im 25% from the top or bottom"></div>
+<!--
         <div class="olive olive-7"></div>
         <div class="olive olive-8"></div>
         <div class="olive olive-9"></div>
         <div class="olive olive-10"></div>
+-->
+    <div class="arrow-black-reverse"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Example code</h3>
+            </div>
+            <div class="col-sm-6">
+                <h4>Rotating Olives</h4>
+                <p>In the rotation olives example we start by create a share object for the animations. Here we use the <code>in</code> and <code>out</code> callbacks to start bootstraps popover. The callback recieves the victim object, and there a cache jQuery element of the victim called <code>$victim</code>.</p>
+                <p>Next we create our <code>bond</code> object, and passes some objects from bond to spy on. Next we define how bond should spot the different victims.</p>
+            </div>
+            <div class="col-sm-6">
+                <pre>var oliveanimation = {
+    in:function(e){
+        e.$victim.popover('show');
+    },
+    out:function(e){
+        e.$victim.popover('hide');
+    }
+};
+
+var bond = new Bond();
+bond.spyon([
+    {
+        victim: $('.olive-1'),
+        missionData:{
+            visibility:{
+                victimBody:true
+            },
+            animation: oliveanimation
+        }
+    },
+    {
+        victim: $('.olive-2'),
+        missionData:{
+            visibility:{
+                victimBody:true,
+                top:0.5,
+                bottom:0.5
+            },
+            animation: oliveanimation
+        }
+    },
+    {
+        victim: $('.olive-3'),
+        missionData:{
+            visibility:{
+                victimBody:true,
+                top:0.2,
+                bottom:0.8
+            },
+            animation: oliveanimation
+        }
+    },
+    {
+        victim: $('.olive-4'),
+        missionData:{
+            animation: oliveanimation
+        }
+    },
+    {
+        victim: $('.olive-5'),
+        missionData:{
+            visibility:{
+                top:300,
+                bottom:300
+            },
+            animation: oliveanimation
+        }
+    },
+    {
+        victim: $('.olive-6'),
+        missionData:{
+            visibility:{
+                top:0.25,
+                bottom:0.25
+            },
+            animation: oliveanimation
+        }
+    }
+]).start();
+                </pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-black">
+        <div class="arrow-black"></div>
+        <div class="container">
+            <div class="footer">
+                    <div class="col-sm-12">
+                        <p>More stuff at <a href="http://apps.stupid-studio.com/">apps.stupid-studio.com</a></p>
+                    </div>
+            </div>
+        </div>
     </div>
 </div>    
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="js/bond.0.0.5.js"></script>
+    <script src="js/bond.0.0.5.min.js"></script>
     <script>
         $(document).ready(function() {
+            
+            var oliveanimation = {
+                in:function(e){
+                    e.$victim.popover('show');
+                },
+                out:function(e){
+                    e.$victim.popover('hide');
+                }
+            };
             
             var bond = new Bond();
             //bond.report = true;
             bond.spyon([
                 {
                     victim: $('.olive-1'),
-                    extra: {
-                        somedata: "Hello Im Data"
-                    },
                     missionData:{
                         visibility:{
                             victimBody:true
                         },
-                        animation:{
-                            in:function(e){
-                                console.log("in", e);
-                            }
-                        }
+                        animation: oliveanimation
                     }
                 },
                 {
@@ -390,7 +490,8 @@ bond.start();
                             victimBody:true,
                             top:0.5,
                             bottom:0.5
-                        }
+                        },
+                        animation: oliveanimation
                     }
                 },
                 {
@@ -400,7 +501,34 @@ bond.start();
                             victimBody:true,
                             top:0.2,
                             bottom:0.8
-                        }
+                        },
+                        animation: oliveanimation
+                    }
+                },
+                {
+                    victim: $('.olive-4'),
+                    missionData:{
+                        animation: oliveanimation
+                    }
+                },
+                {
+                    victim: $('.olive-5'),
+                    missionData:{
+                        visibility:{
+                            top:300,
+                            bottom:300
+                        },
+                        animation: oliveanimation
+                    }
+                },
+                {
+                    victim: $('.olive-6'),
+                    missionData:{
+                        visibility:{
+                            top:0.25,
+                            bottom:0.25
+                        },
+                        animation: oliveanimation
                     }
                 },
                 {
@@ -410,6 +538,14 @@ bond.start();
                             top:200,
                             bottom:200
                         }    
+                    }
+                },
+                {
+                    victim: $('.olive-example'),
+                    missionData:{
+                        visibility:{
+                            victimBody:true
+                        }
                     }
                 }
             ]).start();
