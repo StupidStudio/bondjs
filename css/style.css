@@ -65,22 +65,24 @@ body {
   -ms-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  transition: all 1s ease;
+  -webkit-transition: all 0s;
+  -moz-transition: all 0s;
+  transition: all 0s;
 }
 .olive.spotted {
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  transform: rotate(360deg);
+  -webkit-transition: all 3s ease;
+  -moz-transition: all 3s ease;
+  transition: all 3s ease;
+  -webkit-transform: rotate(1080deg);
+  -moz-transform: rotate(1080deg);
+  -ms-transform: rotate(1080deg);
+  -o-transform: rotate(1080deg);
+  transform: rotate(1080deg);
 }
 .olive:after {
   position: absolute;
   top: 11px;
   left: 16px;
-  /*    background: -webkit-linear-gradient(#ce3d14,#621e0b);*/
   background-color: #C43C16;
   -webkit-transform: rotate(16deg);
   -moz-transform: rotate(16deg);
@@ -219,4 +221,16 @@ body {
   -moz-transition: all 1s ease;
   transition: all 1s ease;
   opacity: 1;
+}
+
+a.btn.btn-black {
+  background-color: black;
+  color: white;
+}
+a.btn.btn-black:hover {
+  background-color: #464646;
+}
+
+.download {
+  padding: 80px 0;
 }

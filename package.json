@@ -1,16 +1,19 @@
 {
-    "name": "bondjs",
-    "version": "0.0.0",
+    "name": "bond",
+    "version": "0.0.5",
     "description": "",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
+    "author": "David Adalberth Andersen @ Stupid Studio",
     "license": "BSD-2-Clause",
     "dependencies": {
         "grunt": "~0.4.2",
         "grunt-contrib-watch":"*",
+        "grunt-contrib-uglify":"*",
+        "grunt-contrib-copy":"*",
+        "grunt-contrib-concat":"*",
         "grunt-contrib-compass":"*"
     }
 }
