@@ -1,4 +1,4 @@
-/*bond.0.0.5.js | David Adalberth Andersen @ Stupid Studio | 2014-02-05*/(function ($) {
+/*bond.0.0.5.js | David Adalberth Andersen @ Stupid Studio | 2014-03-12*/(function ($) {
     "use strict";
 
     /*!
@@ -183,8 +183,9 @@
             var i, l = this.victims.length;
             for (i = 0; i < l; i++) {
                 var victim = this.victims[i];
+                victim.height = victim.$victim.height();
                 victim.location = victim.$victim.offset().top;
-                victim.locationAndBody = victim.$victim.offset().top + victim.$victim.height();
+                victim.locationAndBody = victim.$victim.offset().top + victim.height;
             }
         },
         _watchForScroll: function () {

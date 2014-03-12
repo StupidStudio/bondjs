@@ -52,6 +52,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     
     grunt.registerTask('default', ['watch']);
+    grunt.registerTask('export', ['compass:dev', 'uglify:minified', 'concat']);
 
 };
 
