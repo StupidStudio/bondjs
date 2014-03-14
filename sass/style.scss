@@ -38,13 +38,14 @@ body {
     width: 100%;
 }
 
-.content {
+.content{
     position: relative;
     background-color: white;
     margin-top: 1000px;
     padding-top: 20px;
     @include transition(margin-top 2s ease);
 }
+
 .demo {
     position: relative;
     margin-top: 50px;
@@ -52,6 +53,7 @@ body {
     min-height:  1530px;
     background-color: black;
 }
+
 .bg-black{
     margin-top: 40px;
     position:relative;
@@ -76,9 +78,11 @@ body {
         }
     }
 }
-.content.init {
+
+.content.init{
     margin-top: 300px;
 }
+
 .light {
     color: #989898;
 }

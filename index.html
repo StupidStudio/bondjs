@@ -122,7 +122,7 @@ bond.spyon([
         <div class="row">
             <div class="col-sm-6">
                 <h4>Give bond victims to spy on</h4>
-                <p>To get bond to spot victims, pass him an <code>array</code> of objects, and add one property called <code>victim</code>. Give that property and <code>HTMLElement</code> or an <strong>jQuery</strong> object.</p>
+                <p>To get bond to spot victims, pass him an <code>array</code> of objects, and add one property called <code>victim</code>. Give that property and <code>HTMLElement</code> or an <code>jQuery</code> object.</p>
                 <p>E.g.<code>$('.le-chiffre')</code> (one element) <code>$('.pretty-ladies')</code> (multiple elements). </p>
                 <p>
                     Bond will spot the <code>HTMLElement</code> when it enters the window and give it the default class <code>spotted</code> unless the defaults has been override.
@@ -283,7 +283,7 @@ bond.start();
         <div class="row">
             <div class="col-sm-6">
                 <h4>Spot the victim when its 100px in</h4>
-                <p>Here we tell bond that he should be using px <code>100px</code> values instead of pct. </p> <p>Now bond will spot the <code>victim</code> when the head is <code>100px</code> in.</p>
+                <p>Here we tell bond that he should be using px <code>100px</code> values instead of pct. </p> <p>Now bond will spot the <code>victim</code> when the head or bottom is <code>100px</code> in (the browser window). </p>
             </div>
             <div class="col-sm-6">
                 <pre>bond.spyon([
@@ -291,7 +291,7 @@ bond.start();
         victim: HTMLElement,
         missionData:{
             visibility:{
-                top: 0,
+                top: 100,
                 bottom: 100
             }
         }
@@ -301,14 +301,14 @@ bond.start();
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6"><h4>Change the cssClass</h4><p>We can tell bond that when he spots the <code>victim</code> he should put another css class on it e.g. <code>css-class</code></p></div>
+            <div class="col-sm-6"><h4>Change the cssClass</h4><p>We can tell bond that when he spots the <code>victim</code> he should put another css class on it e.g. <code>custom-css-class</code></p></div>
             <div class="col-sm-6">
                 <pre>bond.spyon([
     {
         victim: HTMLElement,
         missionData:{
             animation:{
-                cssClass: 'css-class'
+                cssClass: 'custom-css-class'
             }
         }
     },
@@ -346,12 +346,12 @@ bond.start();
     </div>
     <div class="demo">
         <div class="arrow-black"></div>
-        <div class="olive olive-1 olive-big" title=".olive-1" data-container="body" data-toggle="popover" data-placement="right" data-content="Im visible, when my body is in the window"></div>
-        <div class="olive olive-2 olive-big" title=".olive-2" data-container="body" data-toggle="popover" data-placement="left" data-content="Im visible, when my body is center in the window"></div>
-        <div class="olive olive-3 olive-big" title=".olive-3" data-container="body" data-toggle="popover" data-placement="right" data-content="Im visible, when my body is 20% from the top, and 80% from the bottom"></div>
-        <div class="olive olive-4 olive-big" title=".olive-4" data-container="body" data-toggle="popover" data-placement="left" data-content="Im visible, when my head is just in the window"></div>
-        <div class="olive olive-5 olive-big" title=".olive-5" data-container="body" data-toggle="popover" data-placement="right" data-content="Im visible, when im 300px from the top or bottom"></div>
-        <div class="olive olive-6 olive-big" title=".olive-6" data-container="body" data-toggle="popover" data-placement="left" data-content="Im visible, when im 25% from the top or bottom"></div>
+        <div class="olive olive-1 olive-big" title=".olive-1" data-container="body" data-toggle="popover" data-placement="right" data-content="I'm visible, when my body is in the window"></div>
+        <div class="olive olive-2 olive-big" title=".olive-2" data-container="body" data-toggle="popover" data-placement="left" data-content="I'm visible, when my body is center in the window"></div>
+        <div class="olive olive-3 olive-big" title=".olive-3" data-container="body" data-toggle="popover" data-placement="right" data-content="I'm visible, when my body is 20% from the top, and 80% from the bottom"></div>
+        <div class="olive olive-4 olive-big" title=".olive-4" data-container="body" data-toggle="popover" data-placement="left" data-content="I'm visible, when my head is just in the window"></div>
+        <div class="olive olive-5 olive-big" title=".olive-5" data-container="body" data-toggle="popover" data-placement="right" data-content="I'm visible, when I'm 300px from the top or bottom"></div>
+        <div class="olive olive-6 olive-big" title=".olive-6" data-container="body" data-toggle="popover" data-placement="left" data-content="I'm visible, when I'm 25% from the top or bottom"></div>
 <!--
         <div class="olive olive-7"></div>
         <div class="olive olive-8"></div>
@@ -367,8 +367,8 @@ bond.start();
             </div>
             <div class="col-sm-6">
                 <h4>Rotating Olives</h4>
-                <p>In the rotation olives example we start by create a share object for the animations. Here we use the <code>in</code> and <code>out</code> callbacks to start bootstraps popover. The callback recieves the victim object, and there a cache jQuery element of the victim called <code>$victim</code>.</p>
-                <p>Next we create our <code>bond</code> object, and passes some objects from bond to spy on. Next we define how bond should spot the different victims.</p>
+                <p>In the rotation olives example we start by create a shared object for the animations. Here we use the <code>in</code> and <code>out</code> callbacks to start bootstraps popover. The callback recieves the victim object, and there a cache jQuery element of the victim called <code>$victim</code>.</p>
+                <p>Next we create our <code>bond</code> object, and passes some objects for bond to spy on. Next we define how bond should spot the different victims.</p>
             </div>
             <div class="col-sm-6">
                 <pre>var oliveanimation = {
@@ -450,7 +450,7 @@ bond.spyon([
         <div class="container">
             <div class="footer">
                     <div class="col-sm-12">
-                        <p>More stuff at <a href="http://apps.stupid-studio.com/">apps.stupid-studio.com</a></p>
+                        <p>Created by: David Adalberth Andesen @ Stupid Studio &emsp; | &emsp; More stuff at <a href="http://apps.stupid-studio.com/">apps.stupid-studio.com</a></p>
                     </div>
             </div>
         </div>
@@ -551,8 +551,11 @@ bond.spyon([
             ]).start();
             
             // Start animation
-            $('.content').addClass('init');
-            bond.forcespy(2000);
+            setTimeout(function(){
+                $('.content').addClass('init');
+                bond.forcespy(2000);
+            },100)
+        
         })
     </script>
 </body>
