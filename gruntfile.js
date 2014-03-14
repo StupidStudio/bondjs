@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             files: ['*.html','*.js','**/*.scss', '*.rb'],
-            tasks: ['compass:dev', 'uglify:minified', 'concat'],
+            tasks: ['compass:dev',
             options: {
                 livereload:true
             }
