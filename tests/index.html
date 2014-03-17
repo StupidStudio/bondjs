@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <style>
+        .box.spotted{
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box red" style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: red;"></div>
+    <div class="box blue" style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: blue;"></div>
+    <div class="box green" style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: green;"></div>
+    <div class="box yellowgreen" style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: yellowgreen;"></div>
+    <div class="box yellow" style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: yellow;"></div>
+    <div class="box brown" style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: brown;"></div>
+    <div class="box black" style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: black;"></div>
+    <div class="box aqua" style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: aqua;"></div>
+    <div class="box fuchsia " style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: fuchsia;"></div>
+    <div class="box teal " style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: teal;"></div>
+    <div class="box red" style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: red;"></div>
+    <div class="box blue" style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: blue;"></div>
+    <div class="box green" style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: green;"></div>
+    <div class="box yellowgreen" style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: yellowgreen;"></div>
+    <div class="box yellow" style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: yellow;"></div>
+    <div class="box brown" style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: brown;"></div>
+    <div class="box black" style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: black;"></div>
+    <div class="box aqua" style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: aqua;"></div>
+    <div class="box fuchsia " style="width:50%; margin-left:25%; margin-top:1%; height:400px; background-color: fuchsia;"></div>
+    <div class="box teal " style="width:50%; margin-left:25%; margin-top:1%; height:600px; background-color: teal;"></div>
+
+    <script src="../bower_components/jquery/jquery.min.js"></script>
+    <script src="../bond.js"></script>
+    <script>
+        var bond = new Bond();
+        //bond.report = true;
+        bond.spyon([
+            {
+                victim: $(".box"),
+                missionData:{
+                    visibility:{
+                        victimBody:false,
+                        top:200,
+                        bottom:200
+                    }
+                }
+            }
+        ]).start();
+
+    </script>
+</body>
+</html>
+
+

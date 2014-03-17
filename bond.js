@@ -50,6 +50,11 @@
         this.$body = $('body');
 
         /*!
+         * Scroll increment
+         */
+        this.scrollIncrement = 0;
+
+        /*!
          * Set height, scroll position, and the target zone for Bonds victims
          */
         this.height = this.$window.height();
@@ -225,6 +230,45 @@
              * Start checking for when the scroll stops
              */
             this._onScrollStop();
+            /*!
+             * Find scroll increment
+             */
+            this._calcScrollIncrement();
+
+        },
+        _calcScrollIncrement: function(){
+            /*!
+             * Set local variables
+             */
+            if(this._calcScrollIncrement.increments === undefined){
+                this._calcScrollIncrement.increments = [];
+                this._calcScrollIncrement.numIcrements = 2;
+                this._calcScrollIncrement.minIcrement = 20;
+            }
+
+            /*!
+             * Push increments to array
+             */
+            this._calcScrollIncrement.increments.push(this.targetZone.start);
+
+            /*!
+             * Remove old entries when array is bigger than numIncremtns
+             */
+            if(this._calcScrollIncrement.increments.length > this._calcScrollIncrement.numIcrements) this._calcScrollIncrement.increments.shift();
+
+            /*!
+             * Calculate "average" increment
+             */
+            this.scrollIncrement = Math.abs(this._calcScrollIncrement.increments[0] - this._calcScrollIncrement.increments[1]);
+
+            /*!
+             * Limit minimum to minIncrement
+             */
+            if(this.scrollIncrement < this._calcScrollIncrement.minIcrement || isNaN(this.scrollIncrement)){
+                this.scrollIncrement = this._calcScrollIncrement.minIcrement;
+            }
+
+            console.log(this.scrollIncrement);
         },
         _onScrollStop: function () {
 
@@ -288,14 +332,14 @@
                          * And adds extra victimsbody padding so the victim is easy'er to spot
                          */
                         if (victim.missionData.visibility.top !== 0 && victim.missionData.visibility.top < 1) {
-                            paddingTop -= (victim.height / 2) + 15;
+                            paddingTop -= (victim.height / 2) + this.scrollIncrement;
                         } else {
-                            paddingTop -= 15;
+                            paddingTop -= this.scrollIncrement;
                         }
                         if (victim.missionData.visibility.bottom !== 0 && victim.missionData.visibility.bottom < 1) {
-                            paddingBottom += (victim.height / 2) + 15;
+                            paddingBottom += (victim.height / 2) + this.scrollIncrement;
                         } else {
-                            paddingBottom += 15;
+                            paddingBottom += this.scrollIncrement;
                         }
 
                         this._findVictim(victim, victim.location, victim.locationAndBody, paddingTop, paddingBottom);
