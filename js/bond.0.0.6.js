@@ -1,6 +1,4 @@
-/*global $, jQuery, window, console, setInterval, clearInterval, clearTimeout, setTimeout*/
-
-(function ($) {
+/*bond.0.0.6.js | David Adalberth Andersen @ Stupid Studio | 2014-03-17*/(function ($) {
     "use strict";
 
     /*!
@@ -37,13 +35,13 @@
          * Global array for victims
          */
         this.victims = [];
-        
+
         /*!
          * Force spying global
          */
         this.forcedspying = false;
-        
-        /*! 
+
+        /*!
          * Caching window and body
          */
         this.$window = $(window);
@@ -79,10 +77,10 @@
                 /*!
                  * Loop over Bonds victims
                  */
-                var i, 
+                var i,
                     l = input.length,
                     that = this;
-                
+
                 for (i = 0; i < l; i++) {
                     var victim = input[i];
 
@@ -93,7 +91,7 @@
                      * parsing the same mission data for the array items.
                      */
                     if (victim.victim instanceof $ || victim.victim instanceof jQuery) {
-                        
+
                         if (victim.victim.length > 1) {
                             $.each(victim.victim, function (i, item) {
                                 that._addVictimToVictims(item, victim.missionData, victim);
@@ -101,7 +99,7 @@
                         } else {
                             this._addVictimToVictims(victim.victim[0], victim.missionData, victim);
                         }
-                        
+
                     } else {
                         this._addVictimToVictims(victim.victim, victim.missionData, victim);
                     }
@@ -114,7 +112,7 @@
         forcespy:function (val){
             /*!
              * Forcespy forces the bond to look for victims,
-             * even though the user doesn't scroll. 
+             * even though the user doesn't scroll.
              */
             if(val === undefined){
                 this._setScrollPosition();
@@ -122,7 +120,7 @@
                 this._calcVictimsPosition();
                 this._iterateOverVictims();
             }else{
-                this._timedForceSpy(val);    
+                this._timedForceSpy(val);
             }
         },
         start: function () {
@@ -162,7 +160,7 @@
                     }
                     that.forcespy();
                     count++;
-                }, 100);  
+                }, 100);
         },
         _addVictimToVictims: function (v, missionData, obj) {
             /*!
@@ -283,7 +281,7 @@
             }, 100);
         },
         _setScrollPosition: function () {
-            
+
             /*!
              * On a Mac the scroll position can be less than null,
              * so here we fixed that, so i can't.
@@ -402,7 +400,7 @@
             }
         },
         _victimInScope: function (victim) {
-            
+
             /*!
              * Set a class on the victims html
              */
