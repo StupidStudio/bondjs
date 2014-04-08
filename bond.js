@@ -430,7 +430,7 @@
             /*!
              * Set a class on the victims html
              */
-            victim.$victim.addClass(victim.missionData.animation.cssClass);
+            if (!victim.$victim.hasClass(victim.missionData.animation.cssClass)) victim.$victim.addClass(victim.missionData.animation.cssClass);
 
             /*!
              * Checks if the victim should only be called once pr page reload
@@ -448,7 +448,7 @@
             /*!
              * Call the callback function and removes the css class
              */
-            if (victim.$victim.hasClass(victim.missionData.animation.cssClass)) victim.$victim.removeClass(victim.missionData.animation.cssClass);
+            if (victim.$victim.hasClass(victim.missionData.animation.cssClass) && !victim.missionData.animation.once) victim.$victim.removeClass(victim.missionData.animation.cssClass);
             if (victim.missionData.animation.out) victim.missionData.animation.out(victim);
         }
     };
