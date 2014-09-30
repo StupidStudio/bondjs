@@ -12,7 +12,7 @@
   ],
   "license": "MIT",
   "homepage": "stupid-studio.com",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
