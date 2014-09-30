@@ -1,4 +1,4 @@
-/*bond.0.0.6.js | David Adalberth Andersen @ Stupid Studio | 2014-03-17*/(function ($) {
+/*bond.0.0.6.js | David Adalberth Andersen @ Stupid Studio | 2014-04-08*/(function ($) {
     "use strict";
 
     /*!
@@ -35,13 +35,13 @@
          * Global array for victims
          */
         this.victims = [];
-
+        
         /*!
          * Force spying global
          */
         this.forcedspying = false;
-
-        /*!
+        
+        /*! 
          * Caching window and body
          */
         this.$window = $(window);
@@ -52,6 +52,12 @@
          */
         this.scrollIncrement = 0;
         this.minScrollIncrement = 20;
+
+        /*!
+         * Direction
+         */
+
+        this.direction = "none";
 
         /*!
          * Set height, scroll position, and the target zone for Bonds victims
@@ -77,10 +83,10 @@
                 /*!
                  * Loop over Bonds victims
                  */
-                var i,
+                var i, 
                     l = input.length,
                     that = this;
-
+                
                 for (i = 0; i < l; i++) {
                     var victim = input[i];
 
@@ -91,7 +97,7 @@
                      * parsing the same mission data for the array items.
                      */
                     if (victim.victim instanceof $ || victim.victim instanceof jQuery) {
-
+                        
                         if (victim.victim.length > 1) {
                             $.each(victim.victim, function (i, item) {
                                 that._addVictimToVictims(item, victim.missionData, victim);
@@ -99,7 +105,7 @@
                         } else {
                             this._addVictimToVictims(victim.victim[0], victim.missionData, victim);
                         }
-
+                        
                     } else {
                         this._addVictimToVictims(victim.victim, victim.missionData, victim);
                     }
@@ -112,7 +118,7 @@
         forcespy:function (val){
             /*!
              * Forcespy forces the bond to look for victims,
-             * even though the user doesn't scroll.
+             * even though the user doesn't scroll. 
              */
             if(val === undefined){
                 this._setScrollPosition();
@@ -120,7 +126,7 @@
                 this._calcVictimsPosition();
                 this._iterateOverVictims();
             }else{
-                this._timedForceSpy(val);
+                this._timedForceSpy(val);    
             }
         },
         start: function () {
@@ -160,9 +166,15 @@
                     }
                     that.forcespy();
                     count++;
-                }, 100);
+                }, 100);  
         },
         _addVictimToVictims: function (v, missionData, obj) {
+             /*!
+             * ID
+             */
+            if(this._addVictimToVictims.id === undefined) this._addVictimToVictims.id = -1;
+            this._addVictimToVictims.id++;
+
             /*!
              * Extend options with users options [missionData]
              * Set victims values
@@ -175,6 +187,7 @@
             victim.locationAndBody = victim.$victim.offset().top + victim.height;
             victim.name = victim.$victim.attr("id") || victim.$victim.attr("class") || victim.victim;
             victim.extra = obj.extra || false;
+            victim.id = this._addVictimToVictims.id
 
             /*!
              * Push victim to global victims array
@@ -235,6 +248,13 @@
             this._calcScrollIncrement();
 
         },
+        _findDirection: function(directionsPoints){
+            if(directionsPoints[0] < directionsPoints[1] || isNaN(directionsPoints[1])){
+                this.direction = "down";
+            }else{
+                this.direction = "up";
+            }
+        },
         _calcScrollIncrement: function(){
             /*!
              * Set local variables
@@ -265,6 +285,10 @@
                 this.scrollIncrement = this.minScrollIncrement;
             }
 
+            /*!
+             * Find direction
+             */
+            this._findDirection(this._calcScrollIncrement.increments);
         },
         _onScrollStop: function () {
 
@@ -281,7 +305,7 @@
             }, 100);
         },
         _setScrollPosition: function () {
-
+            
             /*!
              * On a Mac the scroll position can be less than null,
              * so here we fixed that, so i can't.
@@ -400,11 +424,11 @@
             }
         },
         _victimInScope: function (victim) {
-
+            
             /*!
              * Set a class on the victims html
              */
-            victim.$victim.addClass(victim.missionData.animation.cssClass);
+            if (!victim.$victim.hasClass(victim.missionData.animation.cssClass)) victim.$victim.addClass(victim.missionData.animation.cssClass);
 
             /*!
              * Checks if the victim should only be called once pr page reload
@@ -422,7 +446,7 @@
             /*!
              * Call the callback function and removes the css class
              */
-            if (victim.$victim.hasClass(victim.missionData.animation.cssClass)) victim.$victim.removeClass(victim.missionData.animation.cssClass);
+            if (victim.$victim.hasClass(victim.missionData.animation.cssClass) && !victim.missionData.animation.once) victim.$victim.removeClass(victim.missionData.animation.cssClass);
             if (victim.missionData.animation.out) victim.missionData.animation.out(victim);
         }
     };

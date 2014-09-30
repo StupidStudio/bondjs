@@ -1,4 +1,5 @@
-images_dir = 'img'
-css_dir = 'css'
-sass_dir = 'sass'
-line_comments = false
+fonts_path = '_/fonts'
+images_dir = '_/images'
+css_dir = '_/css'
+sass_dir = '_/sass'
+line_comments = false 

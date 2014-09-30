@@ -56,6 +56,12 @@
         this.minScrollIncrement = 20;
 
         /*!
+         * Direction
+         */
+
+        this.direction = "none";
+
+        /*!
          * Set height, scroll position, and the target zone for Bonds victims
          */
         this.height = this.$window.height();
@@ -165,6 +171,12 @@
                 }, 100);  
         },
         _addVictimToVictims: function (v, missionData, obj) {
+             /*!
+             * ID
+             */
+            if(this._addVictimToVictims.id === undefined) this._addVictimToVictims.id = -1;
+            this._addVictimToVictims.id++;
+
             /*!
              * Extend options with users options [missionData]
              * Set victims values
@@ -177,6 +189,7 @@
             victim.locationAndBody = victim.$victim.offset().top + victim.height;
             victim.name = victim.$victim.attr("id") || victim.$victim.attr("class") || victim.victim;
             victim.extra = obj.extra || false;
+            victim.id = this._addVictimToVictims.id
 
             /*!
              * Push victim to global victims array
@@ -237,6 +250,13 @@
             this._calcScrollIncrement();
 
         },
+        _findDirection: function(directionsPoints){
+            if(directionsPoints[0] < directionsPoints[1] || isNaN(directionsPoints[1])){
+                this.direction = "down";
+            }else{
+                this.direction = "up";
+            }
+        },
         _calcScrollIncrement: function(){
             /*!
              * Set local variables
@@ -267,6 +287,10 @@
                 this.scrollIncrement = this.minScrollIncrement;
             }
 
+            /*!
+             * Find direction
+             */
+            this._findDirection(this._calcScrollIncrement.increments);
         },
         _onScrollStop: function () {
 
@@ -406,7 +430,7 @@
             /*!
              * Set a class on the victims html
              */
-            victim.$victim.addClass(victim.missionData.animation.cssClass);
+            if (!victim.$victim.hasClass(victim.missionData.animation.cssClass)) victim.$victim.addClass(victim.missionData.animation.cssClass);
 
             /*!
              * Checks if the victim should only be called once pr page reload
@@ -424,7 +448,7 @@
             /*!
              * Call the callback function and removes the css class
              */
-            if (victim.$victim.hasClass(victim.missionData.animation.cssClass)) victim.$victim.removeClass(victim.missionData.animation.cssClass);
+            if (victim.$victim.hasClass(victim.missionData.animation.cssClass) && !victim.missionData.animation.once) victim.$victim.removeClass(victim.missionData.animation.cssClass);
             if (victim.missionData.animation.out) victim.missionData.animation.out(victim);
         }
     };
